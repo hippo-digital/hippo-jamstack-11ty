@@ -1,0 +1,15 @@
+{
+  "name": "hippo-jamstack-11ty",
+  "version": "1.0.0",
+  "description": "Demo of Jamstack with 11ty",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "author": "iamgavinc",
+  "license": "ISC",
+  "dependencies": {
+    "@11ty/eleventy": "^0.10.0",
+    "axios": "^0.19.2"
+  }
+}

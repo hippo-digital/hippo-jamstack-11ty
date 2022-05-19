@@ -1,0 +1,30 @@
+---
+layout: layout.njk
+title: 'Pokemons'
+---
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Avatar</th>
+      <th scope="col" class="govuk-table__header">ID</th>
+      <th scope="col" class="govuk-table__header">Name</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {%- for pokemon in pokemons %}
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">
+        <img src="{{ pokemon.sprites.front_default }}" />
+      </td>
+      <td class="govuk-table__cell">
+        <a class="" href="{{ pokemon.name | slug }}/">
+          #{{ pokemon.id}}
+        </a>
+      </td>
+      <td class="govuk-table__cell">
+        {{pokemon.name}}
+      </td>
+    </tr>
+    {%- endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,94 @@
+---
+layout: layout.njk
+pagination:
+    data: pokemons
+    size: 1
+    alias: pokemon
+permalink: "{{ pokemon.name | slug }}/"
+renderData:
+    title: "{{ pokemon.name }}"
+---
+<a href="/" class="govuk-back-link">Back</a>
+<nav class="govuk-!-text-align-centre">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+      {% if page.url != pagination.href.first %}
+        <a class="govuk-button" href="{{ pagination.href.first | url }}" aria-label="First">First</a>
+      {% else %}
+        <button class="govuk-button" href="#" aria-label="First" disabled>First</button>
+      {% endif %}
+    </div>
+    <div class="govuk-grid-column-one-quarter">
+      {% if pagination.href.previous %}
+        <a class="govuk-button" href="{{ pagination.href.previous | url }}" aria-label="Previous">Previous</a>
+      {% else %}
+        <button class="govuk-button" href="#" aria-label="Previous" disabled>Previous</button>
+      {% endif %}
+    </div>
+    <div class="govuk-grid-column-one-quarter">
+      {% if pagination.href.next %}
+        <a class="govuk-button" href="{{ pagination.href.next | url }}" aria-label="Next">Next</a>
+      {% else %}
+        <button class="govuk-button" href="#" aria-label="Next" disabled>Next</button>
+      {% endif %}
+    </div>
+    <div class="govuk-grid-column-one-quarter">
+      {% if page.url != pagination.href.last %}
+        <a class="govuk-button" href="{{ pagination.href.last | url }}" aria-label="Last">Last</a>
+      {% else %}
+        <button class="govuk-button" href="#" aria-label="Next" disabled>Last</button>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      ID
+    </dt>
+    <dd class="govuk-summary-list__value">
+      #{{ pokemon.id }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Name
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {{ pokemon.name }}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Avatar
+    </dt>
+    <dd class="govuk-summary-list__value">
+      <img src="{{ pokemon.sprites.front_default }}" class="d-block mx-auto">
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Type
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {%- for type in pokemon.types %}
+      <strong class="govuk-tag">
+        {{ type.type.name }}
+      </strong>
+      {%- endfor %}
+    </dd>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Moves
+    </dt>
+    <dd class="govuk-summary-list__value">
+      {%- for move in pokemon.moves %}
+        <strong class="govuk-tag govuk-!-margin-bottom-1">
+          {{ move.move.name }}
+        </strong>
+      {%- endfor %}
+    </dd>
+  </div>
+</dl>
