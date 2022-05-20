@@ -2,29 +2,68 @@
 layout: layout.njk
 title: 'Pokemons'
 ---
-<table class="govuk-table">
-  <thead class="govuk-table__head">
-    <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Avatar</th>
-      <th scope="col" class="govuk-table__header">ID</th>
-      <th scope="col" class="govuk-table__header">Name</th>
-    </tr>
-  </thead>
-  <tbody class="govuk-table__body">
-    {%- for pokemon in pokemons %}
-    <tr class="govuk-table__row">
-      <td class="govuk-table__cell">
-        <img src="{{ pokemon.sprites.front_default }}" />
-      </td>
-      <td class="govuk-table__cell">
-        <a class="" href="{{ pokemon.name | slug }}/">
-          #{{ pokemon.id}}
-        </a>
-      </td>
-      <td class="govuk-table__cell">
-        {{pokemon.name}}
-      </td>
-    </tr>
-    {%- endfor %}
-  </tbody>
-</table>
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-l">{{ title }}</h1>
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Avatar</th>
+          <th scope="col" class="govuk-table__header">ID</th>
+          <th scope="col" class="govuk-table__header">Name</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {%- for pokemon in pokemons %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">
+            <img src="{{ pokemon.sprites.front_default }}" />
+          </td>
+          <td class="govuk-table__cell">
+            #{{ pokemon.id}}
+          </td>
+          <td class="govuk-table__cell">
+            <a class="govuk-link" href="{{ pokemon.name | slug }}/">
+              {{pokemon.name}}
+            </a>
+          </td>
+        </tr>
+        {%- endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="govuk-grid-column-one-third">
+    <details class="govuk-details" data-module="govuk-details" open>
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Pokemon API Documentation
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <a href={{'https://pokeapi.co/' | url }} class="govuk-link" target="_blank">https://pokeapi.co/</a>
+      </div>
+    </details>
+    <details class="govuk-details" data-module="govuk-details" open>
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          GDS Documentation
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <a href={{'https://design-system.service.gov.uk/styles/page-template/' | url }} class="govuk-link" target="_blank">https://design-system.service.gov.uk/styles/page-template/</a>
+      </div>
+    </details>
+    
+    <ul class="govuk-list">
+      <li>
+        <a href={{ '/markdown' | url }}>Markdown Template</a>
+      </li>
+      <li>
+        <a href={{ '/html' | url }}>HTML Template</a>
+      </li>
+      <li>
+        <a href={{ '/javascript' | url }}>Javascript Template</a>
+      </li>
+    </ul>
+  </div>
+</div>

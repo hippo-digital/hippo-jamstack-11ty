@@ -2,13 +2,14 @@ const axios = require('axios');
 
 module.exports = async () => {
   let pokemons = [];
-  const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=151');
+  // Requesting the first 9 for quicker build process
+  // Go on, change the 'limit' parameter to 1000, I dare you - go nuts!
+  const response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=9');
   for (const key of response.data.results) {
-    // console.log(key)
-    // pokemons.push({name: key.name})
     const fetch = await axios.get(key.url)
     pokemons.push(fetch.data)
   }
-  console.log(pokemons)
+  // In case you want to see it printed in the console :)
+  // console.log(pokemons)
   return pokemons;
 }

@@ -8,39 +8,53 @@ permalink: "{{ pokemon.name | slug }}/"
 renderData:
     title: "{{ pokemon.name }}"
 ---
-<a href="/" class="govuk-back-link">Back</a>
-<nav class="govuk-!-text-align-centre">
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-one-quarter">
+<style>
+  /* You can use CSS on the template :) */
+  .nav-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-third">
+    <a href="/" class="govuk-back-link">Back</a>
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+    <nav class="nav-buttons">
+      {# First button #}
       {% if page.url != pagination.href.first %}
         <a class="govuk-button" href="{{ pagination.href.first | url }}" aria-label="First">First</a>
       {% else %}
         <button class="govuk-button" href="#" aria-label="First" disabled>First</button>
       {% endif %}
-    </div>
-    <div class="govuk-grid-column-one-quarter">
+      
+      {# Prev button #}
       {% if pagination.href.previous %}
         <a class="govuk-button" href="{{ pagination.href.previous | url }}" aria-label="Previous">Previous</a>
       {% else %}
         <button class="govuk-button" href="#" aria-label="Previous" disabled>Previous</button>
       {% endif %}
-    </div>
-    <div class="govuk-grid-column-one-quarter">
+      
+      {# Next button #}
       {% if pagination.href.next %}
         <a class="govuk-button" href="{{ pagination.href.next | url }}" aria-label="Next">Next</a>
       {% else %}
         <button class="govuk-button" href="#" aria-label="Next" disabled>Next</button>
       {% endif %}
-    </div>
-    <div class="govuk-grid-column-one-quarter">
+      
+      {# Last button #}
       {% if page.url != pagination.href.last %}
         <a class="govuk-button" href="{{ pagination.href.last | url }}" aria-label="Last">Last</a>
       {% else %}
         <button class="govuk-button" href="#" aria-label="Next" disabled>Last</button>
       {% endif %}
-    </div>
+    </nav>
   </div>
-</nav>
+</div>
+
+<h1 class="govuk-heading-xl">{{ title or renderData.title }}</h1>
 
 <dl class="govuk-summary-list">
   <div class="govuk-summary-list__row">
