@@ -7,3 +7,17 @@ title: HTML Template
 <p class="govuk-body">Body text</p>
 <p class="govuk-body-l">Large text</p>
 <p class="govuk-body-s">Small text</p>
+
+<h2 class="govuk-heading-s">Content below loaded from "_data/data.json"</h2>
+<ul class="govuk-list">
+  <!-- Notice how data is directly referenced from '_data/data.json' -->
+  {%- for item in data %}
+    <li>{{ item }}</li>
+  {%- endfor %}
+</ul>
+
+<h3 class="govuk-heading-s">Content below loaded from "_data/people.js"</h3>
+<!-- As long as you're referencing the filename from '_data/', you're good to go -->
+{%- for person in people %}
+  <p class="govuk-body">{{ person.name }}</p>
+{%- endfor %}
